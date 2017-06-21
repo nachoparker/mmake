@@ -52,6 +52,7 @@ RUN apt-get update; \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends adduser; \
     adduser builder --disabled-password --gecos ""; \
     echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers; \
+    sed -i "s|^#force_color_prompt=.*|force_color_prompt=yes|" /home/builder/.bashrc; \
     apt-get purge -y adduser passwd; \
     apt-get autoremove -y; apt-get clean; rm /var/lib/apt/lists/* -r; rm -rf /usr/share/man/*
 
