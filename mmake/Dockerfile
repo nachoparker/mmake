@@ -33,6 +33,11 @@ RUN   apt-get update;\
       dpkg -L gcc-6    | grep -v  "^/usr/bin\|^/usr/lib" | while read f; do test -f $f && rm $f; done; \
       apt-get autoremove -y; apt-get clean; rm /var/lib/apt/lists/* -r; rm -rf /usr/share/man/*
 
+# bc to print compilation time
+RUN sudo apt-get update; \
+    DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends bc; \
+    sudo apt-get autoremove -y; sudo apt-get clean; sudo rm /var/lib/apt/lists/* -r; sudo rm -rf /usr/share/man/*
+
 # Set colorgcc and ccache
 COPY colorgccrc /etc/colorgcc/colorgccrc
 
