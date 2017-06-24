@@ -30,10 +30,14 @@ function timecmd()
   echo -e "\n${BRWN}compilation time ${YE}$DELTA ms${NC}"
 }
 
+# clear statistics
+ccache -z 
 
 # COMPILE!
 NICE="nice -n19"
 timecmd $NICE make $ARGS -C/src
+
+#show ccache stats
 echo
 echo -e " ────────────"
 echo -e " CCACHE STATS"
