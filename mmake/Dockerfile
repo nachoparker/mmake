@@ -20,7 +20,7 @@
 #
 # Details at ownyourbits.com
 
-FROM ownyourbits/minidebian
+FROM ownyourbits/miniraspbian
 
 LABEL description="Make wrapper with GCC 6, colorgcc and ccache"
 MAINTAINER Ignacio Núñez Hernanz <nacho@ownyourbits.com>
@@ -53,7 +53,7 @@ RUN apt-get update; \
     adduser builder --disabled-password --gecos ""; \
     echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers; \
     sed -i "s|^#force_color_prompt=.*|force_color_prompt=yes|" /home/builder/.bashrc; \
-    apt-get purge -y adduser passwd; \
+    apt-get purge -y adduser passwd --force-yes; \
     apt-get autoremove -y; apt-get clean; rm /var/lib/apt/lists/* -r; rm -rf /usr/share/man/*
 
 RUN echo 'export PATH="/usr/lib/colorgcc/:$PATH"' >> /home/builder/.bashrc; \
